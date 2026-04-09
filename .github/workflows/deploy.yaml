@@ -50,7 +50,7 @@ jobs:
       # 5. Меняем версию в манифесте
       - name: Update manifest and commit
         run: |
-          cd gitops-repo/manifests/test-app
+          cd 3-gitops-repo/manifests/test-app
           
           # Заменяем старый образ на новый и готово
           sed -i "s|image: cr.yandex/.*/test-app:.*|image: ${{ env.IMAGE_URL }}|g" deployment.yaml

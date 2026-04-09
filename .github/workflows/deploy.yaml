@@ -29,7 +29,6 @@ jobs:
         run: |
           COMMIT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
           
-          # Вставляем секрет CR_REGISTRY_ID прямо в строку
           IMAGE_URL="${{ env.REGISTRY }}/${{ secrets.CR_REGISTRY_ID }}/${{ env.IMAGE_NAME }}:$COMMIT_SHA"
           
           docker build -t $IMAGE_URL .
@@ -41,7 +40,7 @@ jobs:
       - name: Checkout GitOps repo
         uses: actions/checkout@v4
         with:
-          repository: YOUR_GITHUB_USERNAME/3-gitops-repo 
+          repository: ${{ github.repository_owner }}/3-gitops-repo 
           token: ${{ secrets.GITOPS_TOKEN }}
           path: gitops-repo
 

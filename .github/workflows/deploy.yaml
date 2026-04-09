@@ -32,7 +32,7 @@ jobs:
         run: |
           VERSION_TAG=${GITHUB_REF#refs/tags/}
           
-          IMAGE_URL="${{ env.REGISTRY }}/YOUR_REGISTRY_ID/${{ env.IMAGE_NAME }}:$VERSION_TAG"
+          IMAGE_URL="${{ env.REGISTRY }}/your_registry_id/${{ env.IMAGE_NAME }}:$VERSION_TAG"
           
           # Собираем образ и добавляем к нему встроенный label с версией
           docker build \

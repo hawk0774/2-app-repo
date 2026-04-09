@@ -8,6 +8,7 @@ on:
 env:
   REGISTRY: cr.yandex
   IMAGE_NAME: test-app
+  REGISTRY_ID: ${{ secrets.CR_REGISTRY_ID }} 
 
 jobs:
   build-and-push:
@@ -32,7 +33,7 @@ jobs:
         run: |
           VERSION_TAG=${GITHUB_REF#refs/tags/}
           
-          IMAGE_URL="${{ env.REGISTRY }}/your_registry_id/${{ env.IMAGE_NAME }}:$VERSION_TAG"
+          IMAGE_URL="${{ env.REGISTRY }}/${{ env.REGISTRY_ID }}/${{ env.IMAGE_NAME }}:$VERSION_TAG"
           
           # Собираем образ и добавляем к нему встроенный label с версией
           docker build \

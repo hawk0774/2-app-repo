@@ -52,7 +52,7 @@ jobs:
         run: |
           cd gitops-repo/manifests/test-app
           
-          # Заменяем старый образ на новый
+          # Заменяем старый образ на новый и готово
           sed -i "s|image: cr.yandex/.*/test-app:.*|image: ${{ env.IMAGE_URL }}|g" deployment.yaml
           
           git config user.name "GitHub Actions Bot"

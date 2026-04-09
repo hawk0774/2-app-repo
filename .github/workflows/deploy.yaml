@@ -28,8 +28,8 @@ jobs:
       # 3. Собираем образ. Используем секрет для формирования URL
       - name: Build and push Docker image
         id: docker_build
+        working-directory: ./app-repo
         run: |
-          cd app-repo
           COMMIT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
           
           IMAGE_URL="${{ env.REGISTRY }}/${{ secrets.CR_REGISTRY_ID }}/${{ env.IMAGE_NAME }}:$COMMIT_SHA"
@@ -49,8 +49,8 @@ jobs:
 
       # 5. Меняем версию в манифесте
       - name: Update manifest and commit
+        working-directory: ./gitops-repo/manifests/test-app
         run: |
-          cd 3-gitops-repo/manifests/test-app
           
           # Заменяем старый образ на новый и готово
           sed -i "s|image: cr.yandex/.*/test-app:.*|image: ${{ env.IMAGE_URL }}|g" deployment.yaml

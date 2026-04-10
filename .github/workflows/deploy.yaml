@@ -56,7 +56,6 @@ jobs:
       - name: Update manifest and commit
         working-directory: ./gitops-repo/manifests/test-app
         run: |
-          # Меняем старый тег в манифесте на наш новый (v1.0.0)
           sed -i "s|image: cr.yandex/.*/test-app:.*|image: ${{ env.IMAGE_URL }}|g" deployment.yaml
           
           git config user.name "GitHub Actions Bot"
